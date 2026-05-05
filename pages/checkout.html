@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago — CuBaBiotec</title>
+    <meta name="description" content="Datos de envío y facturación para completar tu pedido.">
+    <meta name="robots" content="noindex,follow">
+    <meta name="theme-color" content="#1b4332">
+    <link rel="preconnect" href="https://cms.cubabiotec.com" crossorigin>
+    <link href="../dist/output.css" rel="stylesheet">
+    <script src="../assets/js/site-seo-config.js"></script>
+    <script src="../assets/js/wc-store-config.js"></script>
+    <script src="../assets/js/wc-cart.js"></script>
+    <script src="../assets/js/minicart.js"></script>
+    <script src="../assets/js/app.js" defer></script>
+    <script src="../assets/js/checkout.js" defer></script>
+</head>
+
+<body data-header-mode="solid" class="bg-white text-gray-900 antialiased">
+    <div id="header"></div>
+
+    <main class="min-h-screen pt-20">
+        <div class="mx-auto max-w-lg px-4 py-10 md:px-8 md:py-14">
+            <a href="/pages/carrito.html"
+                class="mb-8 inline-flex items-center gap-2 text-sm font-medium text-bio-dark/80 transition-colors hover:text-bio-dark">
+                <span aria-hidden="true">←</span> Volver al carrito
+            </a>
+
+            <h1 class="text-2xl font-bold text-bio-dark md:text-3xl">Datos para el pago</h1>
+            <p class="mt-2 text-sm text-gray-600">Completa los datos; se envían al checkout de la tienda y se abrirá PayPal para pagar.</p>
+
+            <div id="checkout-empty" class="mt-10 hidden rounded-2xl border border-gray-100 bg-gray-50 px-6 py-10 text-center text-gray-600">
+                <p>Tu carrito está vacío.</p>
+                <a href="/pages/productos.html" class="mt-4 inline-block font-semibold text-bio-dark underline">Ver productos</a>
+            </div>
+
+            <div id="checkout-form-wrap" class="mt-10 hidden">
+                <form id="checkout-form" class="space-y-5" novalidate>
+                    <fieldset class="space-y-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+                        <legend class="text-xs font-bold uppercase tracking-[0.15em] text-bio-dark">Facturación y contacto</legend>
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Nombre
+                                <input type="text" name="billing_first_name" id="billing-first-name" required autocomplete="given-name"
+                                    class="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-gray-900 outline-none focus:border-bio-dark focus:ring-1 focus:ring-bio-dark/30">
+                            </label>
+                            <label class="block text-sm font-medium text-gray-700">
+                                Apellidos
+                                <input type="text" name="billing_last_name" id="billing-last-name" required autocomplete="family-name"
+                                    class="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-gray-900 outline-none focus:border-bio-dark focus:ring-1 focus:ring-bio-dark/30">
+                            </label>
+                        </div>
+                        <label class="block text-sm font-medium text-gray-700">
+                            Correo electrónico
+                            <input type="email" name="billing_email" id="billing-email" required autocomplete="email"
+                                class="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-gray-900 outline-none focus:border-bio-dark focus:ring-1 focus:ring-bio-dark/30">
+                        </label>
+                        <label class="block text-sm font-medium text-gray-700">
+                            Dirección
+                            <input type="text" name="billing_address_1" id="billing-address-1" required autocomplete="street-address"
+                                class="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-gray-900 outline-none focus:border-bio-dark focus:ring-1 focus:ring-bio-dark/30">
+                        </label>
+                        <label class="block text-sm font-medium text-gray-700">
+                            Ciudad
+                            <input type="text" name="billing_city" id="billing-city" required autocomplete="address-level2"
+                                class="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-gray-900 outline-none focus:border-bio-dark focus:ring-1 focus:ring-bio-dark/30">
+                        </label>
+                        <input type="hidden" name="billing_country" id="billing-country" value="CO">
+                        <p class="text-xs text-gray-500">País: Colombia (CO)</p>
+                    </fieldset>
+
+                    <div class="flex items-start gap-2">
+                        <input type="checkbox" id="same-shipping" checked
+                            class="mt-1 h-4 w-4 rounded border-gray-300 text-bio-dark focus:ring-bio-dark/40">
+                        <label for="same-shipping" class="text-sm text-gray-700">Usar la misma dirección para envío</label>
+                    </div>
+
+                    <fieldset id="shipping-fieldset" class="hidden space-y-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+                        <legend class="text-xs font-bold uppercase tracking-[0.15em] text-bio-dark">Envío</legend>
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Nombre (envío)
+                                <input type="text" id="shipping-first-name" autocomplete="shipping given-name"
+                                    class="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-gray-900 outline-none focus:border-bio-dark focus:ring-1 focus:ring-bio-dark/30">
+                            </label>
+                            <label class="block text-sm font-medium text-gray-700">
+                                Apellidos (envío)
+                                <input type="text" id="shipping-last-name" autocomplete="shipping family-name"
+                                    class="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-gray-900 outline-none focus:border-bio-dark focus:ring-1 focus:ring-bio-dark/30">
+                            </label>
+                        </div>
+                        <label class="block text-sm font-medium text-gray-700">
+                            Dirección (envío)
+                            <input type="text" id="shipping-address-1" autocomplete="shipping street-address"
+                                class="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-gray-900 outline-none focus:border-bio-dark focus:ring-1 focus:ring-bio-dark/30">
+                        </label>
+                        <label class="block text-sm font-medium text-gray-700">
+                            Ciudad (envío)
+                            <input type="text" id="shipping-city" autocomplete="shipping address-level2"
+                                class="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-gray-900 outline-none focus:border-bio-dark focus:ring-1 focus:ring-bio-dark/30">
+                        </label>
+                        <input type="hidden" id="shipping-country" value="CO">
+                    </fieldset>
+
+                    <p id="checkout-error" class="hidden rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-800"></p>
+
+                    <button type="submit" id="checkout-submit"
+                        class="flex w-full items-center justify-center rounded-lg bg-bio-dark py-3.5 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-bio-dark/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-bio-dark/40 disabled:pointer-events-none disabled:opacity-60">
+                        Pagar con PayPal
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

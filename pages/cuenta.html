@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta — Iniciar sesión y registro — CuBaBiotec</title>
+    <meta name="description" content="Accede a tu cuenta CuBaBiotec o regístrate para gestionar pedidos y cursos.">
+    <meta name="robots" content="noindex,follow">
+    <meta name="theme-color" content="#1b4332">
+    <link rel="preconnect" href="https://cms.cubabiotec.com" crossorigin>
+    <link href="../dist/output.css" rel="stylesheet">
+    <script src="../assets/js/site-seo-config.js"></script>
+    <script src="../assets/js/wc-store-config.js"></script>
+    <script src="../assets/js/wc-cart.js"></script>
+    <script src="../assets/js/minicart.js"></script>
+    <script src="../assets/js/app.js" defer></script>
+    <script src="../assets/js/cuenta.js" defer></script>
+</head>
+
+<body data-header-mode="solid" class="min-h-screen bg-[#e8f4ee] text-gray-900 antialiased">
+    <div id="header"></div>
+
+    <main class="min-h-screen pt-24 pb-16 md:pt-28">
+        <div class="mx-auto max-w-lg px-4 md:px-6">
+            <div class="mb-8 text-center">
+                <img src="https://static.readdy.ai/image/b7aa2bdd94c25bd1c2e9a3baf058b838/be6c68a2b3c14e90617c527c876213d8.png"
+                    alt="CuBaBiotec" width="120" height="48" decoding="async"
+                    class="img-fade mx-auto h-12 w-auto object-contain md:h-14">
+                <h1 id="cuenta-heading" class="mt-6 text-2xl font-bold text-bio-dark md:text-3xl">Bienvenido de vuelta</h1>
+                <p id="cuenta-sub" class="mt-2 text-sm text-gray-600 md:text-base">Accede a tu cuenta para gestionar tus pedidos y cursos.</p>
+            </div>
+
+            <div class="overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-sm md:p-8">
+                <div class="flex rounded-full bg-bio-pale/25 p-1" role="tablist" aria-label="Iniciar sesión o crear cuenta">
+                    <button type="button" id="tab-login" role="tab" aria-selected="true" aria-controls="panel-login"
+                        class="flex-1 rounded-full py-2.5 text-sm font-semibold transition-colors duration-200 bg-bio-dark text-white">
+                        Iniciar sesión
+                    </button>
+                    <button type="button" id="tab-register" role="tab" aria-selected="false" aria-controls="panel-register"
+                        class="flex-1 rounded-full py-2.5 text-sm font-semibold text-bio-dark transition-colors duration-200 hover:bg-bio-pale/40">
+                        Crear cuenta
+                    </button>
+                </div>
+
+                <div id="panel-login" role="tabpanel" aria-labelledby="tab-login" class="mt-8">
+                    <form id="form-login" class="space-y-5" novalidate>
+                        <div>
+                            <label for="login-email" class="mb-1.5 block text-sm font-medium text-bio-dark">Correo electrónico</label>
+                            <input id="login-email" name="email" type="email" autocomplete="email" required
+                                placeholder="tu@correo.com"
+                                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-bio-dark/40 focus:ring-2 focus:ring-bio-dark/15">
+                            <p id="login-email-err" class="mt-1 hidden text-xs text-red-600" role="alert"></p>
+                        </div>
+                        <div>
+                            <div class="mb-1.5 flex flex-wrap items-center justify-between gap-2">
+                                <label for="login-password" class="text-sm font-medium text-bio-dark">Contraseña</label>
+                                <span class="text-xs text-gray-500">¿Olvidaste tu contraseña?</span>
+                            </div>
+                            <div class="relative">
+                                <input id="login-password" name="password" type="password" autocomplete="current-password" required
+                                    minlength="8" placeholder="Tu contraseña"
+                                    class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-4 pr-12 text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-bio-dark/40 focus:ring-2 focus:ring-bio-dark/15">
+                                <button type="button" id="login-password-toggle" class="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    aria-label="Mostrar u ocultar contraseña">
+                                    <svg class="h-5 w-5 eye-open" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                    <svg class="hidden h-5 w-5 eye-closed" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <p id="login-password-err" class="mt-1 hidden text-xs text-red-600" role="alert"></p>
+                        </div>
+
+                        <div class="flex gap-3 rounded-xl border border-bio-pale/80 bg-bio-pale/20 p-4 text-sm text-bio-dark">
+                            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-bio-dark shadow-sm" aria-hidden="true">i</span>
+                            <div>
+                                <p class="font-semibold">Autenticación en configuración</p>
+                                <p class="mt-1 text-bio-dark/90">El acceso con cuenta se activará pronto. Mientras tanto, usa el botón inferior para contactarnos.</p>
+                            </div>
+                        </div>
+
+                        <p id="login-form-err" class="hidden rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700" role="alert"></p>
+
+                        <button type="submit" id="login-submit-btn"
+                            class="flex w-full cursor-pointer items-center justify-center rounded-xl bg-bio-dark py-3.5 text-center text-sm font-semibold text-white transition hover:bg-bio-dark/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-bio-dark/40">
+                            Ir a contacto
+                        </button>
+                    </form>
+                </div>
+
+                <div id="panel-register" role="tabpanel" aria-labelledby="tab-register" class="mt-8 hidden">
+                    <form id="form-register" class="space-y-5" novalidate>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <div>
+                                <label for="reg-nombre" class="mb-1.5 block text-sm font-medium text-bio-dark">Nombre</label>
+                                <input id="reg-nombre" name="nombre" type="text" autocomplete="given-name" required
+                                    placeholder="Ana"
+                                    class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-bio-dark/40 focus:ring-2 focus:ring-bio-dark/15">
+                                <p id="reg-nombre-err" class="mt-1 hidden text-xs text-red-600" role="alert"></p>
+                            </div>
+                            <div>
+                                <label for="reg-apellido" class="mb-1.5 block text-sm font-medium text-bio-dark">Apellido</label>
+                                <input id="reg-apellido" name="apellido" type="text" autocomplete="family-name" required
+                                    placeholder="García"
+                                    class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-bio-dark/40 focus:ring-2 focus:ring-bio-dark/15">
+                                <p id="reg-apellido-err" class="mt-1 hidden text-xs text-red-600" role="alert"></p>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="reg-username" class="mb-1.5 block text-sm font-medium text-bio-dark">Nombre de usuario</label>
+                            <input id="reg-username" name="username" type="text" autocomplete="username" required
+                                placeholder="tu_usuario"
+                                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-bio-dark/40 focus:ring-2 focus:ring-bio-dark/15">
+                            <p id="reg-username-err" class="mt-1 hidden text-xs text-red-600" role="alert"></p>
+                        </div>
+                        <div>
+                            <label for="reg-email" class="mb-1.5 block text-sm font-medium text-bio-dark">Correo electrónico</label>
+                            <input id="reg-email" name="email" type="email" autocomplete="email" required
+                                placeholder="tu@correo.com"
+                                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-bio-dark/40 focus:ring-2 focus:ring-bio-dark/15">
+                            <p id="reg-email-err" class="mt-1 hidden text-xs text-red-600" role="alert"></p>
+                        </div>
+                        <div>
+                            <label for="reg-password" class="mb-1.5 block text-sm font-medium text-bio-dark">Contraseña</label>
+                            <input id="reg-password" name="password" type="password" autocomplete="new-password" required
+                                minlength="8" placeholder="Mínimo 8 caracteres"
+                                class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-bio-dark/40 focus:ring-2 focus:ring-bio-dark/15">
+                            <p id="reg-password-err" class="mt-1 hidden text-xs text-red-600" role="alert"></p>
+                        </div>
+
+                        <div class="flex gap-3 rounded-xl border border-bio-pale/80 bg-bio-pale/20 p-4 text-sm text-bio-dark">
+                            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-bio-dark shadow-sm" aria-hidden="true">i</span>
+                            <p>El registro de usuarios está en configuración. Contáctanos directamente para reservar cursos o hacer consultas.</p>
+                        </div>
+
+                        <p id="reg-form-err" class="hidden rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700" role="alert"></p>
+
+                        <button type="submit" id="reg-submit"
+                            class="w-full rounded-xl bg-bio-dark py-3.5 text-sm font-semibold text-white transition hover:bg-bio-dark/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-bio-dark/40">
+                            Contactar para registrarme
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <p class="mt-8 text-center text-sm text-gray-600">
+                ¿Tienes dudas? <a href="#" class="font-medium text-bio-dark underline decoration-bio-dark/30 underline-offset-2 hover:decoration-bio-dark">Contáctanos</a>
+            </p>
+        </div>
+    </main>
+</body>
+
+</html>

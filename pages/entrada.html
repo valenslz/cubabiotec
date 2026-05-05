@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada — CuBaBiotec</title>
+    <meta name="description" content="Artículo del blog CuBaBiotec.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#1b4332">
+    <link rel="canonical" href="https://cubabiotec.com/pages/entrada.html">
+    <meta property="og:locale" content="es_CO">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Entrada — CuBaBiotec">
+    <meta property="og:description" content="Blog CuBaBiotec.">
+    <meta property="og:url" content="https://cubabiotec.com/pages/entrada.html">
+    <meta property="og:site_name" content="CuBaBiotec">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Entrada — CuBaBiotec">
+    <link rel="preconnect" href="https://cms.cubabiotec.com" crossorigin>
+    <link href="../dist/output.css" rel="stylesheet">
+    <style>
+        body.loading {
+            cursor: wait;
+        }
+    </style>
+    <script src="../assets/js/site-seo-config.js"></script>
+    <script src="../assets/js/wp-rest-config.js"></script>
+    <script src="../assets/js/wc-store-config.js"></script>
+    <script src="../assets/js/wc-cart.js"></script>
+    <script src="../assets/js/minicart.js"></script>
+    <script src="../assets/js/app.js" defer></script>
+    <script type="module" src="../assets/js/blog/post.js"></script>
+</head>
+
+<body data-header-mode="solid" class="bg-white text-gray-900 antialiased">
+    <div id="header"></div>
+
+    <main class="min-h-screen bg-linear-to-b from-bio-pale/20 via-white to-gray-50/80 pt-20">
+        <div class="mx-auto px-4 pb-6 pt-8 md:px-8 md:pt-10">
+            <a id="entrada-volver" href="/pages/blog.html"
+                class="inline-flex items-center gap-2 rounded-full border border-bio-dark/15 bg-white/80 px-4 py-2 text-sm font-medium text-bio-dark shadow-sm backdrop-blur-sm transition hover:border-bio-dark/30 hover:bg-white">
+                <span aria-hidden="true">←</span> Volver al blog
+            </a>
+        </div>
+
+        <div id="entrada-skeleton" class="mx-auto max-w-3xl px-4 pb-20 pt-4 md:px-8" aria-busy="true" aria-live="polite">
+            <div class="animate-pulse space-y-6">
+                <div class="h-4 w-32 rounded-full bg-gray-200"></div>
+                <div class="h-10 w-full max-w-2xl rounded-lg bg-gray-200 md:h-12"></div>
+                <div class="h-24 w-full rounded-2xl bg-gray-100"></div>
+                <div class="space-y-3 pt-4">
+                    <div class="h-3 w-full rounded bg-gray-200"></div>
+                    <div class="h-3 w-full rounded bg-gray-200"></div>
+                    <div class="h-3 w-full max-w-xl rounded bg-gray-200"></div>
+                    <div class="h-3 w-full rounded bg-gray-200"></div>
+                    <div class="h-3 w-full max-w-lg rounded bg-gray-200"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="entrada-error" class="mx-auto hidden max-w-lg px-4 pb-16 text-center md:px-8">
+            <div class="rounded-3xl border border-red-100 bg-red-50 px-6 py-12 shadow-sm">
+                <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-red-100 text-red-700" aria-hidden="true">
+                    <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <p class="font-semibold text-red-800" id="entrada-error-msg">No se encontró la entrada.</p>
+                <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                    <button type="button" id="entrada-error-retry"
+                        class="hidden w-full rounded-full border-2 border-bio-dark bg-white px-5 py-2.5 text-sm font-semibold text-bio-dark transition hover:bg-bio-pale/20 sm:w-auto">
+                        Reintentar
+                    </button>
+                    <a href="/pages/blog.html"
+                        class="inline-flex w-full items-center justify-center rounded-full bg-bio-dark px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-bio-dark/90 sm:w-auto">
+                        Ir al blog
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <article id="entrada-content" class="hidden pb-20">
+            <figure id="entrada-hero-wrap" class="relative mx-auto hidden max-w-5xl overflow-hidden px-4 md:px-8">
+                <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-bio-dark/10">
+                    <img id="entrada-hero-img" src="" alt=""
+                        class="img-fade max-h-[min(52vh,460px)] w-full object-cover object-center md:max-h-[480px]">
+                </div>
+            </figure>
+
+            <div class="mx-auto max-w-3xl px-4 pt-8 md:px-8 md:pt-12">
+                <div class="mb-6 flex flex-wrap items-center gap-3">
+                    <span id="entrada-cat"
+                        class="hidden rounded-full bg-bio-dark px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-white"></span>
+                    <time id="entrada-date" class="text-sm font-medium tabular-nums text-gray-500"></time>
+                </div>
+
+                <h1 id="entrada-title"
+                    class="text-balance text-3xl font-bold leading-[1.15] tracking-tight text-bio-dark md:text-5xl md:leading-[1.1]">
+                </h1>
+
+                <div class="entrada-lead mt-6 rounded-2xl border border-bio-dark/10 bg-bio-pale/25 px-5 py-4 text-lg leading-relaxed text-bio-dark/90 md:text-xl"
+                    id="entrada-lead" hidden></div>
+
+                <div id="entrada-body"
+                    class="entrada-prose producto-prose mt-10 text-base leading-relaxed text-gray-700 md:text-lg md:leading-relaxed">
+                </div>
+
+                <footer
+                    class="mt-14 flex flex-col gap-4 border-t border-gray-200/80 pt-10 sm:flex-row sm:items-center sm:justify-between">
+                    <p class="text-sm text-gray-500">CuBaBiotec · biotecnología aplicada</p>
+                
+                </footer>
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>

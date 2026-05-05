@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+    --color-bio-dark: #1b4332;
+    --color-bio-pale: #95d5b2d9;
+  }
+
+/* Contenido HTML del CMS en ficha de producto */
+.producto-prose p {
+  margin-bottom: 0.75em;
+}
+.producto-prose p:last-child {
+  margin-bottom: 0;
+}
+.producto-prose ul,
+.producto-prose ol {
+  margin: 0.5em 0 0.75em;
+  padding-left: 1.25em;
+}
+.producto-prose ul {
+  list-style-type: disc;
+}
+.producto-prose ol {
+  list-style-type: decimal;
+}
+.producto-prose a {
+  color: var(--color-bio-dark);
+  text-decoration: underline;
+}
+.producto-prose a:hover {
+  opacity: 0.85;
+}
+.producto-prose strong {
+  font-weight: 600;
+  color: #1b4332;
+}
+.producto-prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Blog — contenido HTML desde WordPress (ficha entrada) */
+.entrada-prose h2 {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-bio-dark);
+}
+.entrada-prose h3 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1b4332;
+}
+.entrada-prose h4 {
+  margin: 1.25rem 0 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #234835;
+}
+.entrada-prose blockquote {
+  margin: 1.25rem 0;
+  border-left: 4px solid #95d5b2d9;
+  padding: 0.35rem 0 0.35rem 1.1rem;
+  color: #4b5563;
+  font-style: italic;
+}
+.entrada-prose pre,
+.entrada-prose code {
+  font-size: 0.9em;
+}
+.entrada-prose pre {
+  margin: 1rem 0;
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  background: #f4faf6;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgb(27 67 50 / 0.12);
+}
+.entrada-prose hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid rgb(27 67 50 / 0.12);
+}
+.entrada-prose figure {
+  margin: 1.5rem 0;
+}
+.entrada-prose figcaption {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* Entrada suave al cargar imágenes (evita parpadeo brusco) */
+.img-fade {
+  opacity: 0;
+  transition: opacity 0.55s ease-out;
+}
+.img-fade.img-fade--ready {
+  opacity: 1;
+}
+.img-fade.img-fade--muted.img-fade--ready {
+  opacity: 0.25;
+}

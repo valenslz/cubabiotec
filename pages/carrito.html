@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito — CuBaBiotec</title>
+    <meta name="description" content="Tu carrito de compras CuBaBiotec.">
+    <meta name="robots" content="noindex,follow">
+    <meta name="theme-color" content="#1b4332">
+    <link rel="preconnect" href="https://cms.cubabiotec.com" crossorigin>
+    <link href="../dist/output.css" rel="stylesheet">
+    <script src="../assets/js/site-seo-config.js"></script>
+    <script src="../assets/js/wc-store-config.js"></script>
+    <script src="../assets/js/wc-cart.js"></script>
+    <script src="../assets/js/minicart.js"></script>
+    <script src="../assets/js/app.js" defer></script>
+    <script src="../assets/js/carrito.js" defer></script>
+</head>
+
+<body data-header-mode="solid" class="bg-white text-gray-900 antialiased">
+    <div id="header"></div>
+
+    <main class="min-h-screen pt-20">
+        <div class="mx-auto max-w-3xl px-4 py-10 md:px-8 md:py-14">
+            <a href="/pages/productos.html"
+                class="mb-8 inline-flex items-center gap-2 text-sm font-medium text-bio-dark/80 transition-colors hover:text-bio-dark">
+                <span aria-hidden="true">←</span> Seguir comprando
+            </a>
+
+            <h1 class="text-3xl font-bold text-bio-dark">Carrito</h1>
+            <p class="mt-2 text-sm text-gray-600">Tu pedido se gestiona en este sitio; el pago lo puedes completar desde el enlace de checkout cuando esté configurado.</p>
+
+            <div id="carrito-error" class="mt-10 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900"></div>
+
+            <div id="carrito-vacio" class="mt-10 hidden rounded-2xl border border-gray-100 bg-gray-50 px-6 py-12 text-center text-gray-600">
+                Tu carrito está vacío.
+            </div>
+
+            <div id="carrito-contenido" class="mt-10 hidden space-y-6">
+                <ul id="carrito-lineas" class="divide-y divide-gray-100 rounded-2xl border border-gray-100 bg-white"></ul>
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <p class="text-lg font-bold text-bio-dark">
+                        Total: <span id="carrito-total">—</span>
+                    </p>
+                    <a id="carrito-checkout" href="#" class="hidden rounded-lg bg-bio-dark px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-bio-dark/90">
+                        Ir a pagar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
