@@ -306,6 +306,7 @@ function initMobileNav() {
       iconOpen.classList.remove("hidden");
       iconClose.classList.add("hidden");
     }
+    refreshHeaderAppearance();
   }
 
   function openMenu() {
