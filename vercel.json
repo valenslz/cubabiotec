@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    { "source": "/pages/servicios.html", "destination": "/servicios", "permanent": true },
+    { "source": "/pages/contacto.html", "destination": "/contacto", "permanent": true },
+    { "source": "/pages/productos.html", "destination": "/productos", "permanent": true },
+    { "source": "/pages/cursos.html", "destination": "/cursos", "permanent": true },
+    { "source": "/pages/blog.html", "destination": "/blog", "permanent": true }
+  ],
+  "trailingSlash": false
+}

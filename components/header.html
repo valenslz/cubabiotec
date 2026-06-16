@@ -5,19 +5,19 @@
         aria-hidden="true"></div>
 
     <nav class="relative z-[60] flex max-w-7xl mx-auto items-center justify-between px-4 md:px-8 h-16 md:h-20">
-        <a href="/" class="flex shrink-0 items-center gap-3">
+        <a href="/" class="relative z-20 flex shrink-0 items-center gap-3">
             <img alt="CuBaBiotec Logo" class="img-fade h-10 md:h-12 w-auto object-contain "
                 src="https://static.readdy.ai/image/b7aa2bdd94c25bd1c2e9a3baf058b838/be6c68a2b3c14e90617c527c876213d8.png">
         </a>
 
         <!-- En móvil: panel fijo bajo la barra con los li; en md+: fila del nav -->
         <ul id="main-nav" aria-label="Principal"
-            class="main-nav-panel flex max-h-[calc(100dvh-4rem)] flex-col gap-1 overflow-y-auto max-md:fixed max-md:left-0 max-md:right-0 max-md:top-16 max-md:z-[52] max-md:w-full max-md:border-b max-md:border-gray-100 max-md:bg-white max-md:px-4 max-md:py-5 max-md:shadow-xl max-md:hidden md:static md:z-auto md:max-h-none md:w-auto md:flex-row md:items-center md:gap-3 md:overflow-visible md:border-0 md:bg-transparent md:p-0 md:shadow-none md:flex">
+            class="main-nav-panel flex max-h-[calc(100dvh-4rem)] flex-col gap-1 overflow-y-auto md:static md:z-auto md:max-h-none md:w-auto md:flex-row md:items-center md:gap-3 md:overflow-visible md:border-0 md:bg-transparent md:p-0 md:shadow-none md:flex">
             <li><a href="/" data-nav="inicio" class=" nav-link px-4 py-3 md:py-2 rounded-full text-sm font-medium font-body transition-all duration-200 whitespace-nowrap
                 bg-white/20 text-white">Inicio</a></li>
             <li><a href="/pages/productos.html" data-nav="productos" class=" nav-link px-4 py-3 md:py-2 rounded-full text-sm font-medium font-body transition-all duration-200 whitespace-nowrap
                 text-white/90 hover:text-white hover:bg-white/10">Productos</a></li>
-            <li><a href="/pages/servicios.html" data-nav="servicios" class=" nav-link px-4 py-3 md:py-2 rounded-full text-sm font-medium font-body transition-all duration-200 whitespace-nowrap
+            <li><a href="pages/servicios.html" data-nav="servicios" class=" nav-link px-4 py-3 md:py-2 rounded-full text-sm font-medium font-body transition-all duration-200 whitespace-nowrap
                 text-white/90 hover:text-white hover:bg-white/10">Servicios</a></li>
             <li><a href="/pages/cursos.html" data-nav="cursos" class=" nav-link px-4 py-3 md:py-2 rounded-full text-sm font-medium font-body transition-all duration-200 whitespace-nowrap
                 text-white/90 hover:text-white hover:bg-white/10">Cursos</a></li>
@@ -27,7 +27,7 @@
                 text-white/90 hover:text-white hover:bg-white/10">Contacto</a></li>
         </ul>
 
-        <div class="flex shrink-0 items-center gap-1 sm:gap-2 md:gap-3">
+        <div class="relative z-20 flex shrink-0 items-center gap-1 sm:gap-2 md:gap-3">
             <a href="/pages/cuenta.html" id="header-account-link" data-nav="cuenta"
                 class="header-icon-btn flex h-full w-fit items-center justify-center px-2 sm:px-3 lg:px-3"
                 data-test-id="account-slide-over-dialog-trigger" aria-label="Cuenta e inicio de sesión">

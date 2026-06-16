@@ -268,7 +268,7 @@
     function applyListContextFromParams(params) {
         const from = params.get("from");
         const isCursos = from === "cursos";
-        const href = isCursos ? "/pages/cursos.html" : "/pages/productos.html";
+        const href = isCursos ? "/cursos" : "/productos";
         const volverLabel = isCursos ? "Volver a cursos" : "Volver al catálogo";
         const errLabel = isCursos ? "Ir a cursos" : "Ir al catálogo";
 

@@ -119,7 +119,7 @@
             console.error(e);
             if (errEl) {
                 errEl.textContent =
-                    "No se pudieron cargar las entradas. Comprueba la conexión y que el CMS permita peticiones desde este sitio (CORS).";
+                    "No se pudieron cargar las entradas. Comprueba la conexión ";
                 errEl.classList.remove("hidden");
             }
         }

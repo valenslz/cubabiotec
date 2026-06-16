@@ -1,0 +1,15 @@
+# Apache — Redirecciones 301 a URLs limpias
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteRule ^pages/servicios\.html$ /servicios [R=301,L]
+  RewriteRule ^pages/contacto\.html$ /contacto [R=301,L]
+  RewriteRule ^pages/productos\.html$ /productos [R=301,L]
+  RewriteRule ^pages/cursos\.html$ /cursos [R=301,L]
+  RewriteRule ^pages/blog\.html$ /blog [R=301,L]
+
+  # Servir index.html en directorios sin trailing slash
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(servicios|contacto|productos|cursos|blog)/?$ $1/index.html [L]
+</IfModule>

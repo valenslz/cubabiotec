@@ -91,7 +91,7 @@ function appendProductoCards(container, products, cardTemplate, options) {
             if (slugStr || (product.id != null && product.id !== "")) {
                 link.href = `/pages/producto.html?${qs.toString()}`;
             } else {
-                link.href = "/pages/productos.html";
+                link.href = "/productos";
             }
             if (options && options.from === "cursos") {
                 link.textContent = "Reservar un cupo";

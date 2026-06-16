@@ -1,0 +1,13 @@
+# Redirecciones 301 — URLs limpias CuBaBiotec (Netlify)
+/pages/servicios.html   /servicios   301
+/pages/contacto.html    /contacto    301
+/pages/productos.html   /productos   301
+/pages/cursos.html      /cursos      301
+/pages/blog.html        /blog        301
+
+# Trailing slash opcional
+/servicios/   /servicios   301
+/contacto/    /contacto    301
+/productos/   /productos   301
+/cursos/      /cursos      301
+/blog/        /blog        301

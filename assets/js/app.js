@@ -53,13 +53,24 @@ window.bindImageFade = bindImageFade;
 
 document.addEventListener("DOMContentLoaded", () => {
     initImageFadeObserver();
-console.log(document.getElementById("header-menu-toggle"));
+
     const headerFetch = fetch("/components/header.html", { cache: "no-store" })
         .then((res) => res.text())
         .then((data) => {
             const host = document.getElementById("header");
             if (host) host.innerHTML = data;
             initHeaderShell();
+        });
+
+    const footerFetch = fetch("/components/footer.html", { cache: "no-store" })
+        .then((res) => res.text())
+        .then((data) => {
+            const host = document.getElementById("footer");
+            if (host) {
+                host.innerHTML = data;
+                const yearEl = document.getElementById("footer-year");
+                if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+            }
         });
 
     const miniFetch = fetch("/components/minicart.html", { cache: "no-store" })
@@ -74,7 +85,7 @@ console.log(document.getElementById("header-menu-toggle"));
             root.innerHTML = html;
         });
 
-    Promise.all([headerFetch, miniFetch])
+    Promise.all([headerFetch, footerFetch, miniFetch])
         .then(() => {
             if (typeof window.initMinicart === "function") {
                 window.initMinicart();
@@ -88,15 +99,18 @@ function getHeaderMode() {
 }
 
 function getActiveNavKey() {
-    const path = window.location.pathname.replace(/\\/g, "/");
+    const path = window.location.pathname.replace(/\\/g, "/").replace(/\/+$/, "") || "/";
     const lower = path.toLowerCase();
-    const last = path.split("/").pop() || "";
+    const segments = path.split("/").filter(Boolean);
+    const last = segments[segments.length - 1] || "";
 
     if (path === "/" || last === "" || last === "index.html") return "inicio";
-    if (lower.includes("/pages/cuenta")) return "cuenta";
-    if (lower.includes("/pages/blog") || lower.includes("/pages/entrada")) return "blog";
-    if (lower.includes("/pages/cursos")) return "cursos";
-    if (lower.includes("/pages/producto")) {
+    if (lower === "/contacto" || last === "contacto") return "contacto";
+    if (lower.includes("/cuenta")) return "cuenta";
+    if (lower.includes("/blog") || lower.includes("/entrada")) return "blog";
+    if (lower === "/cursos" || last === "cursos") return "cursos";
+    if (lower === "/servicios" || last === "servicios") return "servicios";
+    if (lower.includes("/producto")) {
         try {
             const q = new URLSearchParams(String(window.location.search || ""));
             if (q.get("from") === "cursos") return "cursos";
@@ -105,7 +119,7 @@ function getActiveNavKey() {
         }
         return "productos";
     }
-    if (lower.includes("/pages/productos")) return "productos";
+    if (lower === "/productos" || last === "productos") return "productos";
     return null;
 }
 
@@ -235,24 +249,24 @@ function initMobileNav() {
     const iconClose = toggle.querySelector(".header-menu-icon-close");
 
     const mq = window.matchMedia("(min-width: 768px)");
+    let isOpen = false;
 
     function setBackdrop(open) {
         if (!backdrop) return;
         backdrop.setAttribute("aria-hidden", open ? "false" : "true");
-        if (open) {
-            backdrop.classList.remove("opacity-0", "pointer-events-none");
-            backdrop.classList.add("opacity-100", "pointer-events-auto");
-        } else {
-            backdrop.classList.add("opacity-0", "pointer-events-none");
-            backdrop.classList.remove("opacity-100", "pointer-events-auto");
-        }
+        backdrop.classList.toggle("is-visible", open);
+        backdrop.classList.toggle("opacity-0", !open);
+        backdrop.classList.toggle("pointer-events-none", !open);
     }
 
     function closeMenu() {
-        nav.classList.add("max-md:hidden");
+        if (!isOpen) return;
+        isOpen = false;
+        nav.classList.remove("is-open");
         header?.classList.remove("mobile-nav-open");
         toggle.setAttribute("aria-expanded", "false");
         toggle.setAttribute("aria-label", "Abrir menú");
+        document.body.classList.remove("mobile-menu-open");
         document.body.style.overflow = "";
         setBackdrop(false);
         if (iconOpen && iconClose) {
@@ -262,22 +276,26 @@ function initMobileNav() {
     }
 
     function openMenu() {
-        nav.classList.remove("max-md:hidden");
+        if (isOpen) return;
+        isOpen = true;
+        nav.classList.add("is-open");
         header?.classList.add("mobile-nav-open");
         toggle.setAttribute("aria-expanded", "true");
         toggle.setAttribute("aria-label", "Cerrar menú");
+        document.body.classList.add("mobile-menu-open");
         document.body.style.overflow = "hidden";
         setBackdrop(true);
         if (iconOpen && iconClose) {
             iconOpen.classList.add("hidden");
             iconClose.classList.remove("hidden");
         }
+        const firstLink = nav.querySelector("a");
+        if (firstLink) firstLink.focus();
     }
 
     function onToggle() {
         if (mq.matches) return;
-        const open = toggle.getAttribute("aria-expanded") === "true";
-        if (open) closeMenu();
+        if (isOpen) closeMenu();
         else openMenu();
     }
 
@@ -293,14 +311,26 @@ function initMobileNav() {
     });
 
     mq.addEventListener("change", (e) => {
-        if (e.matches) {
-            closeMenu();
-        }
+        if (e.matches) closeMenu();
     });
 
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+        if (e.key === "Escape" && isOpen) {
             closeMenu();
+            toggle.focus();
+        }
+        if (e.key === "Tab" && isOpen && !mq.matches) {
+            const focusable = nav.querySelectorAll("a, button");
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
         }
     });
 }
