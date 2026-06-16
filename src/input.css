@@ -28,6 +28,10 @@
       transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
       visibility 0.38s;
     will-change: transform;
+    width: 100vw;
+    height: 100dvh;
+    top: 4rem;
+    
   }
   .main-nav-panel.is-open {
     transform: translateX(0);

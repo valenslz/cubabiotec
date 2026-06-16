@@ -1078,6 +1078,9 @@
   .py-24 {
     padding-block: calc(var(--spacing) * 24);
   }
+  .pt-2 {
+    padding-top: calc(var(--spacing) * 2);
+  }
   .pt-4 {
     padding-top: calc(var(--spacing) * 4);
   }
@@ -1089,6 +1092,15 @@
   }
   .pt-10 {
     padding-top: calc(var(--spacing) * 10);
+  }
+  .pt-15 {
+    padding-top: calc(var(--spacing) * 15);
+  }
+  .pt-16 {
+    padding-top: calc(var(--spacing) * 16);
+  }
+  .pt-17 {
+    padding-top: calc(var(--spacing) * 17);
   }
   .pt-20 {
     padding-top: calc(var(--spacing) * 20);
@@ -1999,6 +2011,11 @@
       padding-top: calc(var(--spacing) * 12);
     }
   }
+  .md\:pt-20 {
+    @media (width >= 48rem) {
+      padding-top: calc(var(--spacing) * 20);
+    }
+  }
   .md\:pt-28 {
     @media (width >= 48rem) {
       padding-top: calc(var(--spacing) * 28);
@@ -2181,6 +2198,9 @@
     pointer-events: none;
     transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.38s;
     will-change: transform;
+    width: 100vw;
+    height: 100dvh;
+    top: 4rem;
   }
   .main-nav-panel.is-open {
     transform: translateX(0);

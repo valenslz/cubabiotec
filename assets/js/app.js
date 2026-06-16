@@ -293,6 +293,8 @@ function initMobileNav() {
   function closeMenu() {
     if (!isOpen) return;
     isOpen = false;
+    header.classList.remove("bg-white");
+    header.classList.add("bg-transparent");
     nav.classList.remove("is-open");
     header?.classList.remove("mobile-nav-open");
     toggle.setAttribute("aria-expanded", "false");
@@ -310,6 +312,8 @@ function initMobileNav() {
     if (isOpen) return;
     isOpen = true;
     nav.classList.add("is-open");
+    header.classList.remove("bg-transparent");
+    header.classList.add("bg-white")
     header?.classList.add("mobile-nav-open");
     toggle.setAttribute("aria-expanded", "true");
     toggle.setAttribute("aria-label", "Cerrar menú");
