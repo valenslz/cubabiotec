@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /pages/
+Disallow: /carrito
+Disallow: /checkout
+Disallow: /cuenta
 
 Sitemap: https://cubabiotec.com/sitemap.xml

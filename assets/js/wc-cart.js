@@ -9,6 +9,12 @@
     var lastCartSnapshotAt = 0;
     var lastMutationAt = 0;
     var inFlightCartPromise = null;
+    var DEBUG_CART = window.CBBT_DEBUG_CART === true;
+
+    function debug() {
+        if (!DEBUG_CART || !window.console || typeof console.debug !== "function") return;
+        console.debug.apply(console, arguments);
+    }
 
     function base() {
         return window.WC_STORE_BASE;
@@ -17,7 +23,7 @@
     function getToken() {
         try {
             var token = sessionStorage.getItem(STORAGE_KEY) || "";
-            console.log("GET TOKEN:", token);
+            debug("GET TOKEN");
             return token;
         } catch {
             return "";
@@ -27,7 +33,7 @@
     function setToken(t) {
         if (!t) return;
 
-        console.log("SET TOKEN:", t);
+        debug("SET TOKEN");
 
         try {
             sessionStorage.setItem(STORAGE_KEY, t);
@@ -43,14 +49,14 @@
             res.headers.get("x-wc-store-api-cart-token") ||
             "";
 
-        console.log("TOKEN FROM RESPONSE:", token);
+        debug("TOKEN FROM RESPONSE");
 
         if (!token) return "";
 
         var current = getToken();
 
         if (!current || token !== current) {
-            console.log("TOKEN UPDATED:", token);
+            debug("TOKEN UPDATED");
             setToken(token);
         }
 
@@ -67,7 +73,7 @@
             headers["cart-token"] = tok;
         }
 
-        console.log("REQUEST HEADERS:", headers);
+        debug("REQUEST HEADERS");
 
         return headers;
     }
@@ -137,13 +143,13 @@
     async function ensureCart() {
 
         if (getToken()) {
-            console.log("CART TOKEN EXISTS");
+            debug("CART TOKEN EXISTS");
             return getCart();
         }
 
         var url = cartGetUrl();
 
-        console.log("CREATING CART:", url);
+        debug("CREATING CART:", url);
 
         var res = await fetch(url, {
             method: "GET",
@@ -168,7 +174,7 @@
 
     async function addItem(productId, quantity) {
 
-        console.log("ADD ITEM:", productId, quantity);
+        debug("ADD ITEM:", productId, quantity);
 
         if (!getToken()) {
             await ensureCart();
@@ -181,7 +187,7 @@
             quantity: Number(quantity) || 1
         };
 
-        console.log("ADD ITEM PAYLOAD:", payload);
+        debug("ADD ITEM PAYLOAD:", payload);
 
         var res = await fetch(url, {
             method: "POST",
@@ -205,14 +211,14 @@
         rememberCart(data);
         markMutation();
 
-        console.log("ADD ITEM RESPONSE:", data);
+        debug("ADD ITEM RESPONSE");
 
         return data;
     }
 
     async function getCart(options) {
 
-        console.log("GET CART");
+        debug("GET CART");
 
         hydrateSnapshotFromStorage();
 
@@ -224,18 +230,18 @@
             now - lastMutationAt > MUTATION_FRESHNESS_WINDOW_MS;
 
         if (!force && inFlightCartPromise) {
-            console.log("GET CART REUSED (IN FLIGHT)");
+            debug("GET CART REUSED (IN FLIGHT)");
             return inFlightCartPromise;
         }
 
         if (!force && lastCartSnapshot) {
             var age = now - lastCartSnapshotAt;
             if (age < CART_CACHE_TTL_MS) {
-                console.log("GET CART REUSED (CACHE)");
+                debug("GET CART REUSED (CACHE)");
                 return Promise.resolve(lastCartSnapshot);
             }
             if (allowStale && age < CART_STALE_MAX_MS) {
-                console.log("GET CART REUSED (STALE SNAPSHOT)");
+                debug("GET CART REUSED (STALE SNAPSHOT)");
                 return Promise.resolve(lastCartSnapshot);
             }
         }
@@ -259,7 +265,7 @@
                 return res.json();
             })
             .then(function (data) {
-                console.log("CART DATA:", data);
+                debug("CART DATA");
                 rememberCart(data);
                 return data;
             })
@@ -272,7 +278,7 @@
 
     async function updateItem(key, quantity) {
 
-        console.log("UPDATE ITEM:", key, quantity);
+        debug("UPDATE ITEM:", key, quantity);
 
         var url = base() + "/cart/update-item";
 
@@ -304,7 +310,7 @@
 
     async function removeItem(key) {
 
-        console.log("REMOVE ITEM:", key);
+        debug("REMOVE ITEM:", key);
 
         var url = base() + "/cart/remove-item";
 
@@ -332,7 +338,7 @@
 
     function clearToken() {
 
-        console.log("CLEAR TOKEN");
+        debug("CLEAR TOKEN");
 
         try {
             sessionStorage.removeItem(STORAGE_KEY);

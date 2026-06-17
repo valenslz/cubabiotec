@@ -118,8 +118,15 @@
         } catch (e) {
             console.error(e);
             if (emptyEl) {
-                emptyEl.innerHTML =
-                    "<p>No se pudo leer el carrito.</p><a href=\"/pages/carrito.html\" class=\"mt-4 inline-block font-semibold text-bio-dark underline\">Ir al carrito</a>";
+                emptyEl.textContent = "";
+                var msg = document.createElement("p");
+                msg.textContent = "No se pudo leer el carrito.";
+                var link = document.createElement("a");
+                link.href = "/carrito";
+                link.className = "mt-4 inline-block font-semibold text-bio-dark underline";
+                link.textContent = "Ir al carrito";
+                emptyEl.appendChild(msg);
+                emptyEl.appendChild(link);
                 emptyEl.classList.remove("hidden");
             }
             return;

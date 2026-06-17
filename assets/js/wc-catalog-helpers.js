@@ -89,7 +89,7 @@ function appendProductoCards(container, products, cardTemplate, options) {
             else if (product.id != null && product.id !== "") qs.set("id", String(product.id));
             if (options && options.from === "cursos") qs.set("from", "cursos");
             if (slugStr || (product.id != null && product.id !== "")) {
-                link.href = `/pages/producto.html?${qs.toString()}`;
+                link.href = `/producto?${qs.toString()}`;
             } else {
                 link.href = "/productos";
             }

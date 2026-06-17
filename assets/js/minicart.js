@@ -302,7 +302,7 @@
 
         var checkout = $("minicart-checkout");
         if (checkout) {
-            checkout.href = "/pages/checkout.html";
+            checkout.href = "/checkout";
             checkout.classList.remove("hidden");
             checkout.setAttribute("aria-disabled", "false");
             checkout.classList.remove("pointer-events-none", "opacity-50");

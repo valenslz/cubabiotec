@@ -16,7 +16,6 @@ async function renderizarConComponente() {
 
         const templateHTML = await templateRes.text();
         const products = await productsRes.json();
-        console.log(products);
 
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = templateHTML.trim();

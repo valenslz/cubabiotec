@@ -18,7 +18,7 @@ export function applySEO(post, imageUrl) {
     const desc = excerpt || `${titlePlain} — ${site}`;
     const slug = post.slug || "";
     const origin = String(window.SITE_ORIGIN || window.location.origin || "").replace(/\/$/, "");
-    const canonical = `${origin}/pages/entrada.html?slug=${encodeURIComponent(slug)}`;
+    const canonical = `${origin}/entrada?slug=${encodeURIComponent(slug)}`;
 
     document.title = `${titlePlain} — Blog · ${site}`;
     setMeta("name", "description", desc);

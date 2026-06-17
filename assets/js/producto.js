@@ -4,8 +4,11 @@
     const $ = (id) => document.getElementById(id);
 
     function htmlToPlainText(html) {
+        if (window.CBBT_SECURITY && typeof window.CBBT_SECURITY.textFromHtml === "function") {
+            return window.CBBT_SECURITY.textFromHtml(html);
+        }
         if (!html) return "";
-        const doc = new DOMParser().parseFromString(html, "text/html");
+        const doc = new DOMParser().parseFromString(String(html), "text/html");
         return (doc.body.textContent || "").trim();
     }
 
@@ -37,7 +40,7 @@
 
     function injectProductJsonLd(product, imageUrl) {
         const origin = siteOrigin();
-        const productUrl = `${origin}/pages/producto.html?slug=${encodeURIComponent(product.slug || "")}`;
+        const productUrl = `${origin}/producto?slug=${encodeURIComponent(product.slug || "")}`;
         const minor = Number(product.prices?.price ?? 0);
         const divisor =
             product.prices?.currency_minor_unit != null
@@ -80,7 +83,7 @@
         const excerpt = htmlToPlainText(product.short_description || product.description || "").slice(0, 160);
         const desc = excerpt || `${product.name} — ${site}`;
         const img0 = product.images?.[0]?.src || product.images?.[0]?.full_src || "";
-        const canonical = `${origin}/pages/producto.html?slug=${encodeURIComponent(product.slug || "")}`;
+        const canonical = `${origin}/producto?slug=${encodeURIComponent(product.slug || "")}`;
 
         document.title = `${product.name} — ${site}`;
         ensureMeta("name", "description", desc);
@@ -98,11 +101,10 @@
     }
 
     function sanitizeDescription(html) {
-        if (!html) return "";
-        const d = document.createElement("div");
-        d.innerHTML = html;
-        d.querySelectorAll("script").forEach((el) => el.remove());
-        return d.innerHTML;
+        if (window.CBBT_SECURITY && typeof window.CBBT_SECURITY.sanitizeHtml === "function") {
+            return window.CBBT_SECURITY.sanitizeHtml(html);
+        }
+        return "";
     }
 
     function formatPrice(product) {

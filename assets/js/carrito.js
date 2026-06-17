@@ -95,7 +95,7 @@
             totalEl.textContent = cartTotalDisplay(cart);
             contenido.classList.remove("hidden");
 
-            checkoutBtn.href = "/pages/checkout.html";
+            checkoutBtn.href = "/checkout";
             checkoutBtn.classList.remove("hidden");
         } catch (e) {
             console.error(e);

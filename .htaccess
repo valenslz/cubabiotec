@@ -1,4 +1,4 @@
-# Apache — Redirecciones 301 a URLs limpias
+# Apache - Redirecciones 301 a URLs limpias y cabeceras de seguridad
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
@@ -7,9 +7,22 @@
   RewriteRule ^pages/productos\.html$ /productos [R=301,L]
   RewriteRule ^pages/cursos\.html$ /cursos [R=301,L]
   RewriteRule ^pages/blog\.html$ /blog [R=301,L]
+  RewriteRule ^pages/carrito\.html$ /carrito [R=301,L]
+  RewriteRule ^pages/checkout\.html$ /checkout [R=301,L]
+  RewriteRule ^pages/cuenta\.html$ /cuenta [R=301,L]
+  RewriteRule ^pages/producto\.html$ /producto [R=301,L]
+  RewriteRule ^pages/entrada\.html$ /entrada [R=301,L]
 
   # Servir index.html en directorios sin trailing slash
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(servicios|contacto|productos|cursos|blog)/?$ $1/index.html [L]
+  RewriteRule ^(servicios|contacto|productos|cursos|blog|carrito|checkout|cuenta|producto|entrada)/?$ $1/index.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' https://cms.cubabiotec.com https://static.readdy.ai data:; font-src 'self' data:; connect-src 'self' https://cms.cubabiotec.com; form-action 'self'; upgrade-insecure-requests"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
 </IfModule>

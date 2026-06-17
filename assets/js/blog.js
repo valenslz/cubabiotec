@@ -110,7 +110,7 @@
 
                 const link = card.querySelector(".js-read-link");
                 if (link && post.slug) {
-                    link.href = `/pages/entrada.html?slug=${encodeURIComponent(post.slug)}`;
+                    link.href = `/entrada?slug=${encodeURIComponent(post.slug)}`;
                 }
 
                 container.appendChild(card);

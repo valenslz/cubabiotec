@@ -1,7 +1,10 @@
 /** Texto plano desde HTML (títulos, excerpts, SEO). */
 export function htmlToPlainText(html) {
+    if (window.CBBT_SECURITY && typeof window.CBBT_SECURITY.textFromHtml === "function") {
+        return window.CBBT_SECURITY.textFromHtml(html);
+    }
     if (!html) return "";
-    const doc = new DOMParser().parseFromString(html, "text/html");
+    const doc = new DOMParser().parseFromString(String(html), "text/html");
     return (doc.body.textContent || "").trim();
 }
 
@@ -19,12 +22,10 @@ export function formatDate(iso) {
 }
 
 export function sanitizeContent(html) {
-    if (!html) return "";
-    const d = document.createElement("div");
-    d.innerHTML = html;
-    d.querySelectorAll("script, iframe, object, embed").forEach((el) => el.remove());
-    d.querySelectorAll("[onclick]").forEach((el) => el.removeAttribute("onclick"));
-    return d.innerHTML;
+    if (window.CBBT_SECURITY && typeof window.CBBT_SECURITY.sanitizeHtml === "function") {
+        return window.CBBT_SECURITY.sanitizeHtml(html);
+    }
+    return "";
 }
 
 export function featuredImageUrl(post) {
