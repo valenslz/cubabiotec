@@ -11,20 +11,34 @@
     { "source": "/pages/producto.html", "destination": "/producto", "permanent": true },
     { "source": "/pages/entrada.html", "destination": "/entrada", "permanent": true }
   ],
+
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-       {
-  "key": "Content-Security-Policy",
-  "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' https://cms.cubabiotec.com https://static.readdy.ai https://readdy.ai data: blob:;"
-},
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=()" }
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' https://cms.cubabiotec.com https://static.readdy.ai https://readdy.ai https://public.readdy.ai data: blob:; connect-src 'self' https://cms.cubabiotec.com;"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        }
       ]
     }
   ],
+
   "trailingSlash": false
 }
